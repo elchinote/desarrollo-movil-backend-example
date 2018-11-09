@@ -1,0 +1,23 @@
+{
+  "name": "coderhouse-desarrollo-movil-backend-example",
+  "version": "1.0.0",
+  "description": "Backend de ejemplo para el curso de desarrollo móvil",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js -e js",
+    "lint": "eslint ./"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "17.7.0",
+    "hapi-auth-jwt2": "8.1.0",
+    "jsonwebtoken": "8.3.0",
+    "node-fetch": "2.2.1"
+  },
+  "devDependencies": {
+    "prettier": "1.14.3",
+    "eslint": "5.6.0",
+    "eslint-plugin-node": "7.0.1",
+    "nodemon": "1.18.4"
+  }
+}

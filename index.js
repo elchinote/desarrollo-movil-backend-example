@@ -9,7 +9,7 @@ const jsonwebtoken = require('jsonwebtoken')
  * In a real scenario get them using process.env
  */
 
-const JWT_SECRET = 'ABRACADABRA'
+const JWT_SECRET = process.env.JWT_SECRET || 'ABRACADABRA'
 
 /**
  * Server Initialization
@@ -41,10 +41,12 @@ const init = async () => {
     jorge: {
       id: 1234,
       password: 'secreto',
+      rol: 'admin',
     },
     marta: {
       id: 5678,
       password: 'misterio',
+      rol: 'user',
     },
   }
 
@@ -53,7 +55,6 @@ const init = async () => {
    */
 
   function handleAuth(request) {
-    console.log('request', request.payload)
     const { username, password } = JSON.parse(request.payload)
 
     const user = fakeUsers[username]
@@ -63,7 +64,7 @@ const init = async () => {
     }
 
     try {
-      const jwt = jsonwebtoken.sign({ sub: user.id, username }, JWT_SECRET)
+      const jwt = jsonwebtoken.sign({ sub: user.id, username, rol: user.rol }, JWT_SECRET)
       return { jwt }
     } catch (err) {
       return Boom.unauthorized()
